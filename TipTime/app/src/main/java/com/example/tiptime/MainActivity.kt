@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun calculateTip() {
-        val stringInTextField = binding.costOfService.text.toString()
+        val stringInTextField = binding.costOfServiceEdit.text.toString()
         val cost = stringInTextField.toDoubleOrNull()
 
         if (cost == null || cost == null){
