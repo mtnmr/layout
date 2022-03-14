@@ -42,7 +42,8 @@
             android:layout_width="match_parent"
             android:layout_height="194dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:scaleType="centerCrop"/>
 
         <!-- TODO: Create a TextView for each of the following:
                 The dog's name
