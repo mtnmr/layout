@@ -1,0 +1,7 @@
+#Mon Mar 14 17:50:13 JST 2022
+base.1=/Users/kawaimei/AndroidStudioProjects/layout/Dogglers/app/build/intermediates/dex/debug/mergeProjectDexDebug/classes.dex
+path.1=classes.dex
+base.0=/Users/kawaimei/AndroidStudioProjects/layout/Dogglers/app/build/intermediates/dex/debug/mergeExtDexDebug/classes.dex
+renamed.1=classes2.dex
+renamed.0=classes.dex
+path.0=classes.dex

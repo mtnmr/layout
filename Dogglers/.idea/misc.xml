@@ -3,11 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="app/src/main/res/layout/activity_grid_list.xml" value="0.29528985507246375" />
+        <entry key="app/src/main/res/layout/activity_grid_list.xml" value="0.1555910635685575" />
         <entry key="app/src/main/res/layout/activity_horizontal_list.xml" value="0.29528985507246375" />
         <entry key="app/src/main/res/layout/activity_vertical_list.xml" value="0.29528985507246375" />
         <entry key="app/src/main/res/layout/grid_list_item.xml" value="0.29528985507246375" />
-        <entry key="app/src/main/res/layout/vertical_horizontal_list_item.xml" value="0.29528985507246375" />
+        <entry key="app/src/main/res/layout/vertical_horizontal_list_item.xml" value="0.375" />
       </map>
     </option>
   </component>
