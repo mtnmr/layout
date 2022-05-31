@@ -1,8 +1,9 @@
-
 package com.example.recyclerviewsample
 
 import android.os.Bundle
+import android.util.Log
 import android.view.*
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.selection.SelectionPredicates
 import androidx.recyclerview.selection.SelectionTracker
@@ -14,11 +15,11 @@ import com.example.recyclerviewsample.databinding.FragmentSampleBinding
 
 class SampleFragment : Fragment() {
 
-    private var _binding : FragmentSampleBinding ?= null
+    private var _binding: FragmentSampleBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var tracker : SelectionTracker<Long>
-    private var actionMode : ActionMode?= null
+    private lateinit var tracker: SelectionTracker<Long>
+    private var actionMode: ActionMode? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,8 +34,8 @@ class SampleFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val list = mutableListOf<Item>()
-        for (i in 1..20){
-            val current = Item(item=i)
+        for (i in 1..20) {
+            val current = Item(item = i)
             list.add(current)
         }
 
@@ -68,7 +69,16 @@ class SampleFragment : Fragment() {
                         ): Boolean {
                             return when (item?.itemId) {
                                 R.id.delete -> {
-                                    //削除処理
+                                    Toast.makeText(
+                                        requireContext(),
+                                        "delete button",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+                                    val items = tracker.selection
+                                    items.forEach { it ->
+                                        Log.d("Selection check", it.toString())
+                                    }
+                                    mode?.finish()
                                     true
                                 }
                                 else -> {
