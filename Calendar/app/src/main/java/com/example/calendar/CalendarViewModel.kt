@@ -9,7 +9,7 @@ class CalendarViewModel  : ViewModel(){
 
     private val myCalendar = Calendar.getInstance(Locale.JAPAN)
 
-    fun getDays() : List<Date>{
+    fun getDays() : List<DateItem>{
         val startDate = myCalendar.time
         val cnt:Int = myCalendar.getActualMaximum(Calendar.WEEK_OF_MONTH) * 7
 
@@ -17,10 +17,10 @@ class CalendarViewModel  : ViewModel(){
         val datOfWeek:Int = myCalendar.get(Calendar.DAY_OF_WEEK) -1
         myCalendar.add(Calendar.DATE, -datOfWeek)
 
-        val days:ArrayList<Date> = arrayListOf()
+        val days:ArrayList<DateItem> = arrayListOf()
 
         for (i in 1..cnt){
-            days.add(myCalendar.time)
+            days.add(DateItem(date = myCalendar.time))
             myCalendar.add(Calendar.DATE, 1)
         }
 
@@ -34,12 +34,12 @@ class CalendarViewModel  : ViewModel(){
         return SimpleDateFormat("yyyy.MM", Locale.JAPAN).format(myCalendar.time)
     }
 
-    fun nextMonth() : List<Date>{
+    fun nextMonth() : List<DateItem>{
         myCalendar.add(Calendar.MONTH, 1)
         return getDays()
     }
 
-    fun prevMonth(): List<Date>{
+    fun prevMonth(): List<DateItem>{
         myCalendar.add(Calendar.MONTH, -1)
         return getDays()
     }

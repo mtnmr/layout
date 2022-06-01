@@ -11,7 +11,7 @@ import com.example.calendar.ItemAdapter.ItemViewHolder
 import java.text.SimpleDateFormat
 import java.util.*
 
-class ItemAdapter(var dateList: List<Date>) : RecyclerView.Adapter<ItemViewHolder>(){
+class ItemAdapter(var dateList: List<DateItem>) : RecyclerView.Adapter<ItemViewHolder>(){
 
     class ItemViewHolder(itemView:View) : RecyclerView.ViewHolder(itemView){
         val dayText: TextView = itemView.findViewById(R.id.day)
@@ -26,12 +26,17 @@ class ItemAdapter(var dateList: List<Date>) : RecyclerView.Adapter<ItemViewHolde
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
         val item = dateList[position]
         holder.dayText.text = SimpleDateFormat("d", Locale.JAPAN).format(item)
-        if(position % 7 == 0){
-            holder.dayText.setTextColor(Color.RED)
-        }else if(position % 7 == 6){
-            holder.dayText.setTextColor(Color.BLUE)
-        }else{
-            holder.dayText.setTextColor(Color.BLACK)
+        holder.contentText.text = item.content
+        when {
+            position % 7 == 0 -> {
+                holder.dayText.setTextColor(Color.RED)
+            }
+            position % 7 == 6 -> {
+                holder.dayText.setTextColor(Color.BLUE)
+            }
+            else -> {
+                holder.dayText.setTextColor(Color.BLACK)
+            }
         }
     }
 
