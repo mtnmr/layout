@@ -11,21 +11,22 @@ import com.example.calendar.ItemAdapter.ItemViewHolder
 import java.text.SimpleDateFormat
 import java.util.*
 
-class ItemAdapter(var dateList: List<DateItem>) : RecyclerView.Adapter<ItemViewHolder>(){
+class ItemAdapter(var dateList: List<DateItem>) : RecyclerView.Adapter<ItemViewHolder>() {
 
-    class ItemViewHolder(itemView:View) : RecyclerView.ViewHolder(itemView){
+    class ItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val dayText: TextView = itemView.findViewById(R.id.day)
-        val contentText : TextView = itemView.findViewById(R.id.content)
+        val contentText: TextView = itemView.findViewById(R.id.content)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.calendar_cell, parent, false)
+        val view =
+            LayoutInflater.from(parent.context).inflate(R.layout.calendar_cell, parent, false)
         return ItemViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
         val item = dateList[position]
-        holder.dayText.text = SimpleDateFormat("d", Locale.JAPAN).format(item)
+        holder.dayText.text = SimpleDateFormat("d", Locale.JAPAN).format(item.date)
         holder.contentText.text = item.content
         when {
             position % 7 == 0 -> {
