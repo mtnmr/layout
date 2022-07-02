@@ -1,15 +1,17 @@
 package com.example.swipesample
 
+import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.GestureDetector
 import android.view.MotionEvent
+import android.view.View
 import androidx.activity.viewModels
 import com.example.swipesample.databinding.ActivityMainBinding
 import kotlin.math.abs
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), View.OnTouchListener {
 
     private val MIN_SWIPE_DISTANCE_X = 100
     private val MAX_SWIPE_DISTANCE_X = 2000
@@ -21,6 +23,7 @@ class MainActivity : AppCompatActivity() {
 
     private val viewModel:CountViewModel  = CountViewModel()
 
+    @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -29,11 +32,18 @@ class MainActivity : AppCompatActivity() {
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
         mGestureDetector = GestureDetector(this, mOnGestureListener)
+
+        binding.view.setOnTouchListener(this)
     }
 
-    override fun onTouchEvent(event: MotionEvent?): Boolean {
-        return mGestureDetector!!.onTouchEvent(event)
+    override fun onTouch(p0: View?, p1: MotionEvent?): Boolean {
+        mGestureDetector!!.onTouchEvent(p1)
+        return true
     }
+
+//    override fun onTouchEvent(event: MotionEvent?): Boolean {
+//        return mGestureDetector!!.onTouchEvent(event)
+//    }
 
     private val mOnGestureListener = object : GestureDetector.SimpleOnGestureListener() {
 
