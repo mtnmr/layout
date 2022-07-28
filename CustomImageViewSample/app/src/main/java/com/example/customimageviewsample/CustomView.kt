@@ -82,6 +82,9 @@ class CustomView(context: Context, attrs: AttributeSet?) : View(context, attrs) 
  */
 
 
+//できなかった
+//デバッグでscaleが1.0から変わってなかった
+//https://tech.pjin.jp/blog/2015/11/24/androidimageview%e3%82%92%e3%82%ab%e3%82%b9%e3%82%bf%e3%83%9e%e3%82%a4%e3%82%ba%e3%81%99%e3%82%8b%e3%80%90%e5%89%8d%e7%b7%a8-%e3%83%94%e3%83%b3%e3%83%81%e3%82%a4%e3%83%b3%e3%83%bb%e3%83%94%e3%83%b3/
 class CustomView: AppCompatImageView {
     constructor(context: Context) : super(context)
     constructor(context: Context, attrs: AttributeSet?) : super(context, attrs)

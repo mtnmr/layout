@@ -19,7 +19,6 @@ class CustomImageView: AppCompatImageView {
     constructor(context: Context, attrs: AttributeSet?) : super(context, attrs)
     constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr)
 
-    //公式サンプル
 
     private var mScaleFactor = 1f
 
@@ -51,7 +50,7 @@ class CustomImageView: AppCompatImageView {
 //    }
 
 
-
+    //できなかった
 /*
     private var bitmap: Bitmap? = null
     private val bitmapMatrix = Matrix()
