@@ -10,16 +10,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
-        android:orientation="vertical"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0dp">
+        android:orientation="vertical">
 
 
         <TextView
             android:id="@+id/time_picker_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="no time" />
+            android:text="time" />
 
         <Button
             android:id="@+id/time_picker_button"
@@ -34,7 +32,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
-            android:text="no date" />
+            android:text="date" />
 
         <Button
             android:id="@+id/date_picker_button"
