@@ -2,15 +2,14 @@ package com.example.customimageviewsample
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.graphics.Bitmap
-import android.graphics.Canvas
-import android.graphics.Matrix
-import android.graphics.Paint
+import android.graphics.*
 import android.util.AttributeSet
 import android.util.Log
+import android.view.GestureDetector
 import android.view.MotionEvent
 import android.view.ScaleGestureDetector
 import androidx.appcompat.widget.AppCompatImageView
+import androidx.core.view.GestureDetectorCompat
 import kotlin.math.max
 import kotlin.math.min
 
@@ -27,31 +26,68 @@ class CustomImageView: AppCompatImageView {
         override fun onScale(detector: ScaleGestureDetector): Boolean {
             mScaleFactor *= detector.scaleFactor
 
-            // Don't let the object get too small or too large.
-            mScaleFactor = max(0.1f, min(mScaleFactor, 5.0f))
+            //小さくならないように1.0-5.0のscaleに収める
+            mScaleFactor = max(1.0f, min(mScaleFactor, 5.0f))
 
+            //この２行で描写できるようになってるぽい？
             scaleX = mScaleFactor
             scaleY = mScaleFactor
 
-            invalidate()
+//            invalidate()
             return true
         }
     }
 
-//    override fun onDraw(canvas: Canvas?) {
-//        super.onDraw(canvas)
-//
-//        canvas?.apply {
-//            save()
-//            scale(mScaleFactor, mScaleFactor)
-//            // onDraw() code goes here
-//            restore()
-//        }
-//    }
+    //移動
+    private val panListener = object : GestureDetector.SimpleOnGestureListener() {
+
+        override fun onScroll(
+            e1: MotionEvent?,
+            e2: MotionEvent?,
+            distanceX: Float,
+            distanceY: Float
+        ): Boolean {
+
+            translationX -= distanceX
+            translationY -= distanceY
+
+//            invalidate()
+            return true
+        }
+    }
+
+     private val mPanGestureDetector = GestureDetectorCompat(context, panListener)
 
 
-    //できなかった
+    private val mScaleDetector = ScaleGestureDetector(context, scaleListener)
+
+
+    @SuppressLint("ClickableViewAccessibility")
+    override fun onTouchEvent(ev: MotionEvent): Boolean {
+        mScaleDetector.onTouchEvent(ev)
+        mPanGestureDetector.onTouchEvent(ev)
+        return true
+    }
+
+
+//公式ドキュメントに含まれてたけどonScale内のscale設定だけで描写できてた
+    override fun onDraw(canvas: Canvas?) {
+        super.onDraw(canvas)
+
+        canvas?.apply {
+            save()
+            scale(mScaleFactor, mScaleFactor)
+            // onDraw() code goes here
+            restore()
+        }
+    }
+
+
 /*
+
+別のサンプル
+表示する画像をsetBitmapで渡す？
+
     private var bitmap: Bitmap? = null
     private val bitmapMatrix = Matrix()
     private val paint = Paint()
@@ -82,14 +118,14 @@ class CustomImageView: AppCompatImageView {
         }
     }
 
+    fun setBitmap(bitmap: Bitmap?) {
+        if (bitmap != null) {
+            this.bitmap = bitmap
+            val mScaleFactor = min(width.toFloat() / bitmap.width, height.toFloat() / bitmap.height)
+            bitmapMatrix.setScale(mScaleFactor, mScaleFactor, 0f, 0f)
+        }
+    }
+
  */
 
-    private val mScaleDetector = ScaleGestureDetector(context, scaleListener)
-
-    @SuppressLint("ClickableViewAccessibility")
-    override fun onTouchEvent(ev: MotionEvent): Boolean {
-        mScaleDetector.onTouchEvent(ev)
-        Log.d("ImageView", "pinchIn/Out")
-        return true
-    }
 }

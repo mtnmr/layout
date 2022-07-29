@@ -12,17 +12,12 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-<!--        <com.example.customimageviewsample.CustomImageView-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="match_parent"-->
-<!--            android:src="@drawable/ic_android_black_24dp" />-->
-
 <!--       <com.example.customimageviewsample.CustomView-->
 <!--           android:id="@+id/customView"-->
 <!--           android:layout_width="match_parent"-->
-<!--           android:layout_height="wrap_content"-->
+<!--           android:layout_height="match_parent"-->
 <!--           android:src="@drawable/ic_android_black_24dp"-->
-<!--           android:scaleType="matrix"/>-->
+<!--           android:layout_gravity="center"/>-->
 
         <com.example.customimageviewsample.CustomImageView
             android:id="@+id/customView"

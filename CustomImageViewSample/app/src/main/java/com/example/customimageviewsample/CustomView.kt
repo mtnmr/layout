@@ -83,16 +83,14 @@ class CustomView(context: Context, attrs: AttributeSet?) : View(context, attrs) 
 
 
 //できなかった
-//デバッグでscaleが1.0から変わってなかった
+//デバッグでscaleがずっと1.0から変わってなかった
 //https://tech.pjin.jp/blog/2015/11/24/androidimageview%e3%82%92%e3%82%ab%e3%82%b9%e3%82%bf%e3%83%9e%e3%82%a4%e3%82%ba%e3%81%99%e3%82%8b%e3%80%90%e5%89%8d%e7%b7%a8-%e3%83%94%e3%83%b3%e3%83%81%e3%82%a4%e3%83%b3%e3%83%bb%e3%83%94%e3%83%b3/
 class CustomView: AppCompatImageView {
     constructor(context: Context) : super(context)
     constructor(context: Context, attrs: AttributeSet?) : super(context, attrs)
     constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr)
 
-
-
-    private var bitmapMatrix = Matrix()
+    private var bitmapMatrix = imageMatrix
     private val SCALE_MAX = 3.0f
     private val SCALE_MIN = 0.5f
     private val PINCH_SENSITIVITY = 5.0f
@@ -129,7 +127,7 @@ class CustomView: AppCompatImageView {
                 return false
             }
 
-            matrix.postScale(scaleFactor, scaleFactor, focusX!!, focusY!!)
+            bitmapMatrix.postScale(scaleFactor, scaleFactor, focusX!!, focusY!!)
 
             invalidate()
             return super.onScale(detector)
@@ -141,9 +139,9 @@ class CustomView: AppCompatImageView {
     }
 
     private fun getMatrixValue(index: Int): Float {
-        if (bitmapMatrix == null) {
-            bitmapMatrix = imageMatrix
-        }
+//        if (bitmapMatrix == null) {
+//            bitmapMatrix = imageMatrix
+//        }
         val values = FloatArray(9)
         bitmapMatrix.getValues(values)
         return values[index]
